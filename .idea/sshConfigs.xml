@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="5.tcp.vip.cpolar.cn" id="0259dc5d-29a7-40aa-b24c-cc4bddfa91d6" port="10179" customName="PI" nameFormat="CUSTOM" username="yu" useOpenSSHConfig="true">
+        <option name="customName" value="PI" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>
