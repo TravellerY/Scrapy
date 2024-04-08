@@ -1,3 +1,4 @@
+from urllib import parse
 from time import sleep
 import scrapy
 import undetected_chromedriver as uc
@@ -40,8 +41,12 @@ class CnblogsSpider(scrapy.Spider):
             yield scrapy.Request(url=url, cookies=cookie_dict, headers=headers, dont_filter=True, callback=self.parse)
 
     def parse(self, response):
-        node_urls = response.xpath('')
-        for node_url in node_urls:
-            post_url = node_url.xpath('.//a/@href').extract_first()
-            image_url = node_url.xpath('').extract_first()
-
+        post_nodes = response.xpath('//div[@id="news_list"]//div[@class="news_block"]')
+        for post_node in post_nodes:
+            image_url = post_node.xpath('//a/img/@src').extract_first("")
+            post_url = post_node.xpath('//h2/a/@href').extract_first("")
+            yield scrapy.Request(url=parse.urljoin(response.url, post_url), meta={'image_url': image_url}, callback=self.parse_detail)
+        next_url = response.xpath('//a[contains(text(), "Next >")]/@href').extract_first("")
+        yield scrapy.Request(url=parse.urljoin(response.url, next_url), callback=self.parse)
+    def parse_detail(self, response):
+        pass
