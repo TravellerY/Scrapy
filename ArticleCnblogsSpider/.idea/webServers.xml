@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3a128dc5-641c-4296-bd15-da08e9f4888d" name="PI">
+        <fileTransfer rootFolder="/data" accessType="SFTP" host="5.tcp.vip.cpolar.cn" port="10179" sshConfigId="2df9030c-9d66-4828-b184-445c0fc3dc4d" sshConfig="PI">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

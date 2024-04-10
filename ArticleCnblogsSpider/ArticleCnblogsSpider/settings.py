@@ -1,3 +1,5 @@
+import os
+os_path = os.path.dirname(__file__)
 # Scrapy settings for ArticleCnblogsSpider project
 #
 # For simplicity, this file contains only settings considered important or
@@ -17,7 +19,7 @@ NEWSPIDER_MODULE = "ArticleCnblogsSpider.spiders"
 #USER_AGENT = "ArticleCnblogsSpider (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -62,9 +64,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "ArticleCnblogsSpider.pipelines.ArticlecnblogsspiderPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "ArticleCnblogsSpider.pipelines.ArticlecnblogsspiderPipeline": 100,
+   "ArticleCnblogsSpider.pipelines.ArticleImagePipeline": 1,
+   "ArticleCnblogsSpider.pipelines.MysqlTwistedPipeline": 3
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -91,3 +95,12 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+# 下载图片的配置
+IMAGES_STORE = f"{os_path}/images"
+IMAGES_URLS_FIELD = "front_image_url"
+
+MYSQL_HOST = "2.tcp.vip.cpolar.cn"
+MYSQL_PORT = 11900
+MYSQL_DBNAME = 'article_spider'
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "zy971006zy"
